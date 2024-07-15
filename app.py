@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-def create_image_with_text(text1, text2, max_chars_in_line, spacing, bg_image_path, font_path, font_size=40):
+def create_image_with_text(text1, text2, spacing, bg_image_path, font_path, font_size=40):
     image = Image.open(bg_image_path)
     draw = ImageDraw.Draw(image)
     try:
@@ -16,19 +16,20 @@ def create_image_with_text(text1, text2, max_chars_in_line, spacing, bg_image_pa
         font2 = ImageFont.truetype(font_path, font_size - 10)
     except IOError:
         font2 = ImageFont.load_default()
-    def wrap_text(text, draw, font, max_width, max_chars_in_line=None):
-        if max_chars_in_line is not None and len(text) <= max_chars_in_line:
-            return [text]
+
+    def wrap_text(text, draw, font, max_width):
         lines = []
-        words = text.split()
-        while words:
-            line = ''
-            while words and (draw.textsize(line + words[0], font=font)[0] <= max_width) and (max_chars_in_line is None or len(line) + len(words[0]) <= max_chars_in_line):
-                line = line + (words.pop(0) + ' ')
-            lines.append(line)
+        for paragraph in text.split('\n'):
+            words = paragraph.split()
+            while words:
+                line = ''
+                while words and (draw.textsize(line + words[0], font=font)[0] <= max_width):
+                    line = line + (words.pop(0) + ' ')
+                lines.append(line)
         return lines
+
     max_width = image.size[0] - 40
-    lines1 = wrap_text(text1, draw, font1, max_width, max_chars_in_line)
+    lines1 = wrap_text(text1, draw, font1, max_width)
     lines2 = wrap_text(text2, draw, font2, max_width)
     text1_height = sum([draw.textsize(line, font=font1)[1] + 5 for line in lines1])
     text2_height = sum([draw.textsize(line, font=font2)[1] for line in lines2])
@@ -55,13 +56,12 @@ def index():
     if request.method == 'POST':
         text1 = request.form['text1']
         text2 = request.form['text2']
-        max_chars_in_line = int(request.form['max_chars_in_line'])
         spacing = int(request.form['spacing'])
         bg_image = request.files['bg_image']
         bg_image_path = 'background.jpg'
         bg_image.save(bg_image_path)
         font_path = 'NanumBarunGothicBold.ttf'
-        img_byte_arr = create_image_with_text(text1, text2, max_chars_in_line, spacing, bg_image_path, font_path)
+        img_byte_arr = create_image_with_text(text1, text2, spacing, bg_image_path, font_path)
         return send_file(img_byte_arr, mimetype='image/jpeg', as_attachment=True, download_name=text2+'.jpg')
     return render_template('index.html')
 
