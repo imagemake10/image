@@ -39,7 +39,7 @@ def create_image_with_text(text1, text2, spacing, bg_image_path, font_path, font
         text_width, line_height = draw.textsize(line, font=font1)
         x = (image.size[0] - text_width) / 2
         draw.text((x, y), line, fill="black", font=font1)
-        y += line_height + 5
+        y += line_height + 10
     y += spacing
     for line in lines2:
         text_width, line_height = draw.textsize(line, font=font2)
