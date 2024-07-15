@@ -6,24 +6,61 @@
     <title>Create Image</title>
 </head>
 <body>
+    <center>
     <h1>Create Image with Text</h1>
     <form method="post" enctype="multipart/form-data">
-        <label for="text1">Text 1:</label><br>
-        <input type="text" id="text1" name="text1"><br><br>
-        
-        <label for="text2">Text 2:</label><br>
-        <input type="text" id="text2" name="text2"><br><br>
-        
-        <label for="max_chars_in_line">Max Characters in Line:</label><br>
-        <input type="number" id="max_chars_in_line" name="max_chars_in_line" value="30"><br><br>
-        
-        <label for="spacing">Spacing:</label><br>
-        <input type="number" id="spacing" name="spacing" value="20"><br><br>
-        
-        <label for="bg_image">Background Image:</label><br>
-        <input type="file" id="bg_image" name="bg_image" accept="image/*"><br><br>
-        
-        <input type="submit" value="Create Image">
+    <table width="800" border="0" style="padding:10px">
+    <tr>
+        <td width="35%" style="text-align: right;">
+            <label for="text1">내용:</label>
+        </td>
+        <td width="65%">
+            <input type="text" id="text1" name="text1" style="width:400px">
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: right;height:35px">
+            <label for="text2" >장절:</label>
+        </td>
+        <td>
+            <input type="text" id="text2" name="text2" style="width:200px">
+            (예, 마태복음 1장 1절)
+        </td>
+    </tr>
+    <tr>    
+        <td style="text-align: right;;height:35px">
+            <label for="max_chars_in_line">Max Characters in Line:</label>
+        </td>
+        <td>    
+            <input type="number" id="max_chars_in_line" name="max_chars_in_line" value="30" >
+        </td>
+    </tr>
+    <tr>    
+        <td style="text-align: right;;height:35px">
+            <label for="spacing">Spacing:</label>
+        </td>
+        <td>
+            <input type="number" id="spacing" name="spacing" value="20">
+        </td>    
+    </tr>
+    <tr>    
+        <td style="text-align: right;;height:35px">
+            <label for="bg_image">Background Image:</label>
+        </td>
+        <td>
+            <input type="file" id="bg_image" name="bg_image" accept="image/*">
+        </td>
+    </tr>
+    <tr> 
+        <td colspan="2">
+            <center>   
+            <input type="submit" value="Create Image" style="width:150px;height:80px">
+            </center>
+        </td>
+    </tr>
+    </table>
     </form>
+    
+    </center>
 </body>
 </html>
