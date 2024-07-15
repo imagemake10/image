@@ -1,0 +1,29 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Image</title>
+</head>
+<body>
+    <h1>Create Image with Text</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="text1">Text 1:</label><br>
+        <input type="text" id="text1" name="text1"><br><br>
+        
+        <label for="text2">Text 2:</label><br>
+        <input type="text" id="text2" name="text2"><br><br>
+        
+        <label for="max_chars_in_line">Max Characters in Line:</label><br>
+        <input type="number" id="max_chars_in_line" name="max_chars_in_line" value="30"><br><br>
+        
+        <label for="spacing">Spacing:</label><br>
+        <input type="number" id="spacing" name="spacing" value="20"><br><br>
+        
+        <label for="bg_image">Background Image:</label><br>
+        <input type="file" id="bg_image" name="bg_image" accept="image/*"><br><br>
+        
+        <input type="submit" value="Create Image">
+    </form>
+</body>
+</html>
