@@ -1,14 +1,35 @@
 <!-- templates/index.html -->
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Create Image</title>
+    <script>
+        function validateForm() {
+            const text1 = document.getElementById('text1').value.trim();
+            const text2 = document.getElementById('text2').value.trim();
+            const bgImage = document.getElementById('bg_image').value;
+
+            if (text1 === '') {
+                alert('내용을 입력하세요.');
+                return false;
+            }
+            if (text2 === '') {
+                alert('장절을 입력하세요.');
+                return false;
+            }
+            if (bgImage === '') {
+                alert('배경 이미지를 선택하세요.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <center>
     <h1>Create Image with Text</h1>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
     <table width="800" border="0" style="padding:10px">
     <tr>
         <td width="35%" style="text-align: right;">
